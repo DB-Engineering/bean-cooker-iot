@@ -25,7 +25,7 @@ device_client = IoTHubDeviceClient.create_from_connection_string(CONNECTION_STRI
 def create_and_send_message(client):
     await device_client.connect()
     print('sending message...')
-    await device_client.send_message()
+    await device_client.send_message('message')
     print('sent!')
     await device_client.shutdown()
 
