@@ -18,19 +18,44 @@ COOL_STPT = "cool_set_point"
 
 MESSAGE_DELAY = 5000
 
+device_client = IoTHubDeviceClient.create_from_connection_string(CONNECTION_STRING)
 
-sensor_message = json.dumps(TEST_DICT)
+# sensor_message = json.dumps(TEST_DICT)
 
-def create_and_send_message() -> json:
-    pass
-
-def receive_message():
-
-def main():
-    device_client = IoTHubDeviceClient.create_from_connection_string(CONNECTION_STRING)
+def create_and_send_message(client):
     await device_client.connect()
     print('sending message...')
     await device_client.send_message()
     print('sent!')
     await device_client.shutdown()
-:
+
+
+def receive_message(message):
+    print("Message received:")
+
+    # print data from both system and application (custom) properties
+    for property in vars(message).items():
+        print ("    {}".format(property))
+
+
+
+    
+
+def main():
+    # Attempt to attach the message handler
+    try:
+        # Attach the handler to the client
+        client.on_message_received = receive_message
+
+    except KeyboardInterrupt:
+        print("IoT Hub C2D Messaging device sample stopped")
+
+
+    while True:
+        create_and_send_message(device_client)
+        time.sleep(MESSAGE_DELAY)
+
+   
+
+
+
