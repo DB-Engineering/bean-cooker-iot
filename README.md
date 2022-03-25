@@ -13,3 +13,4 @@ In this session, the participants will connect an existing, open-source device (
 Proposed Architecture:
 The device will be connected to IoT Hub and will pass its data to a database. Commands can be sent back to the device from some other source by writing to IoT Hub and posting those to a topic the device listens to.
  
+connection_string = 'HostName=BeanCookerHub.azure-devices.net;DeviceId=BeanCooker;SharedAccessKey=xGjSflXMolYlltH6GyKefr7W8xLpGCYPK39gRKf5EvA='
